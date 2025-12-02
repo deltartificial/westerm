@@ -70,7 +70,7 @@ pub struct WindowConfig {
 impl Default for WindowConfig {
     fn default() -> Self {
         Self {
-            dynamic_title: true,
+            dynamic_title: false,                          // Westerm: Static title showing "Westerm"
             blur: true,                                    // Westerm: Enable blur for transparency
             embed: Default::default(),
             padding: Delta { x: 10, y: 15 },              // Westerm: Extra top padding for macOS buttons
