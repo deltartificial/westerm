@@ -5,7 +5,7 @@
   <br>Westerm
 </h1>
   <p align="center">
-    Fast, cross-platform, GPU-accelerated terminal emulator.
+    🤠 Westerm is a blazingly fast, GPU-accelerated terminal emulator built with Rust and OpenGL
     <br />
     <a href="#about">About</a>
     ·
