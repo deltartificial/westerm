@@ -178,11 +178,11 @@ pub struct PrimaryColors {
 impl Default for PrimaryColors {
     fn default() -> Self {
         PrimaryColors {
-            // Westerm signature: dark warm background with burnt orange foreground
+            // Westerm signature: dark warm background with neutral foreground
             background: Rgb::new(0x1a, 0x12, 0x0f),  // Deep dark brown-black
-            foreground: Rgb::new(0xff, 0xb3, 0x80),  // Warm peach-orange
-            bright_foreground: Some(Rgb::new(0xff, 0xd7, 0xb3)),  // Bright warm orange
-            dim_foreground: Some(Rgb::new(0xd9, 0x8a, 0x5a)),     // Dim burnt orange
+            foreground: Rgb::new(0xd8, 0xd8, 0xd8),  // Light gray (neutral)
+            bright_foreground: Some(Rgb::new(0xf8, 0xf8, 0xf8)),  // Bright white
+            dim_foreground: Some(Rgb::new(0xa0, 0xa0, 0xa0)),     // Dim gray
         }
     }
 }
@@ -204,13 +204,13 @@ impl Default for NormalColors {
         NormalColors {
             // Westerm warm orange-toned palette
             black: Rgb::new(0x2a, 0x1f, 0x1a),      // Warm dark brown
-            red: Rgb::new(0xe6, 0x5a, 0x3d),        // Bright burnt orange-red
+            red: Rgb::new(0xe6, 0x5a, 0x3d),        // Bright burnt orange-red (Tmux orange)
             green: Rgb::new(0xa8, 0xb5, 0x6a),      // Muted warm green
-            yellow: Rgb::new(0xff, 0xb3, 0x66),     // Golden orange
+            yellow: Rgb::new(0xe6, 0x5a, 0x3d),     // Tmux orange for path highlighting
             blue: Rgb::new(0x7d, 0x9f, 0xb5),       // Muted warm blue
             magenta: Rgb::new(0xd9, 0x8a, 0x7d),    // Dusty rose-orange
             cyan: Rgb::new(0x8f, 0xb5, 0xa8),       // Warm teal
-            white: Rgb::new(0xf2, 0xd5, 0xc4),      // Warm cream
+            white: Rgb::new(0xd8, 0xd8, 0xd8),      // Light gray (neutral)
         }
     }
 }
@@ -231,14 +231,14 @@ impl Default for BrightColors {
     fn default() -> Self {
         // Westerm bright warm palette - enhanced brightness while maintaining orange tone
         BrightColors {
-            black: Rgb::new(0x6b, 0x5a, 0x52),      // Warm gray
-            red: Rgb::new(0xff, 0x7a, 0x5c),        // Vibrant coral-orange
+            black: Rgb::new(0x6b, 0x6b, 0x6b),      // Medium gray
+            red: Rgb::new(0xff, 0x7a, 0x5c),        // Vibrant coral-orange (brighter Tmux)
             green: Rgb::new(0xc4, 0xd4, 0x88),      // Bright warm green
-            yellow: Rgb::new(0xff, 0xd7, 0x99),     // Bright peachy gold
+            yellow: Rgb::new(0xff, 0x7a, 0x5c),     // Bright Tmux orange for path
             blue: Rgb::new(0x9f, 0xc4, 0xd9),       // Light warm blue
             magenta: Rgb::new(0xff, 0xaa, 0x99),    // Bright salmon-pink
             cyan: Rgb::new(0xad, 0xd4, 0xc4),       // Bright warm cyan
-            white: Rgb::new(0xff, 0xf5, 0xeb),      // Warm white (seashell)
+            white: Rgb::new(0xf8, 0xf8, 0xf8),      // Bright white
         }
     }
 }
@@ -260,13 +260,13 @@ impl Default for DimColors {
         // Westerm dim warm palette - subdued orange tones
         DimColors {
             black: Rgb::new(0x1a, 0x12, 0x0f),      // Very dark warm brown
-            red: Rgb::new(0x99, 0x3d, 0x2a),        // Dim burnt orange-red
+            red: Rgb::new(0x99, 0x3d, 0x2a),        // Dim burnt orange-red (dim Tmux)
             green: Rgb::new(0x6f, 0x77, 0x45),      // Dim olive
-            yellow: Rgb::new(0xa8, 0x77, 0x44),     // Dim amber
+            yellow: Rgb::new(0x99, 0x3d, 0x2a),     // Dim Tmux orange for path
             blue: Rgb::new(0x52, 0x68, 0x77),       // Dim steel blue
             magenta: Rgb::new(0x8f, 0x5a, 0x52),    // Dim dusty rose
             cyan: Rgb::new(0x5f, 0x77, 0x6f),       // Dim teal
-            white: Rgb::new(0xa8, 0x8f, 0x82),      // Dim warm beige
+            white: Rgb::new(0x8e, 0x8e, 0x8e),      // Dim gray
         }
     }
 }
