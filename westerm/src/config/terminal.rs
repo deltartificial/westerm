@@ -6,12 +6,25 @@ use westerm_terminal::term::Osc52;
 
 use crate::config::ui_config::{Program, StringVisitor};
 
-#[derive(ConfigDeserialize, Serialize, Default, Clone, Debug, PartialEq)]
+#[derive(ConfigDeserialize, Serialize, Clone, Debug, PartialEq)]
 pub struct Terminal {
     /// OSC52 support mode.
     pub osc52: SerdeOsc52,
     /// Path to a shell program to run on startup.
     pub shell: Option<Program>,
+}
+
+impl Default for Terminal {
+    fn default() -> Self {
+        Self {
+            osc52: SerdeOsc52::default(),
+            // Westerm: Launch tmux by default with new-session -A for attach-or-create
+            shell: Some(Program::WithArgs {
+                program: "/opt/homebrew/bin/tmux".to_string(),
+                args: vec!["new-session".to_string(), "-A".to_string(), "-s".to_string(), "main".to_string()],
+            }),
+        }
+    }
 }
 
 #[derive(SerdeReplace, Serialize, Default, Copy, Clone, Debug, PartialEq)]
