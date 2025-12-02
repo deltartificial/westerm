@@ -54,8 +54,8 @@ pub struct HintStartColors {
 impl Default for HintStartColors {
     fn default() -> Self {
         Self {
-            foreground: CellRgb::Rgb(Rgb::new(0x18, 0x18, 0x18)),
-            background: CellRgb::Rgb(Rgb::new(0xf4, 0xbf, 0x75)),
+            foreground: CellRgb::Rgb(Rgb::new(0x1a, 0x12, 0x0f)),  // Dark background color
+            background: CellRgb::Rgb(Rgb::new(0xff, 0xb3, 0x66)),  // Bright orange
         }
     }
 }
@@ -69,8 +69,8 @@ pub struct HintEndColors {
 impl Default for HintEndColors {
     fn default() -> Self {
         Self {
-            foreground: CellRgb::Rgb(Rgb::new(0x18, 0x18, 0x18)),
-            background: CellRgb::Rgb(Rgb::new(0xac, 0x42, 0x42)),
+            foreground: CellRgb::Rgb(Rgb::new(0x1a, 0x12, 0x0f)),  // Dark background color
+            background: CellRgb::Rgb(Rgb::new(0xe6, 0x5a, 0x3d)),  // Burnt orange-red
         }
     }
 }
@@ -140,8 +140,8 @@ pub struct FocusedMatchColors {
 impl Default for FocusedMatchColors {
     fn default() -> Self {
         Self {
-            background: CellRgb::Rgb(Rgb::new(0xf4, 0xbf, 0x75)),
-            foreground: CellRgb::Rgb(Rgb::new(0x18, 0x18, 0x18)),
+            background: CellRgb::Rgb(Rgb::new(0xff, 0xb3, 0x66)),  // Bright orange
+            foreground: CellRgb::Rgb(Rgb::new(0x1a, 0x12, 0x0f)),  // Dark background
         }
     }
 }
@@ -155,8 +155,8 @@ pub struct MatchColors {
 impl Default for MatchColors {
     fn default() -> Self {
         Self {
-            background: CellRgb::Rgb(Rgb::new(0xac, 0x42, 0x42)),
-            foreground: CellRgb::Rgb(Rgb::new(0x18, 0x18, 0x18)),
+            background: CellRgb::Rgb(Rgb::new(0xe6, 0x5a, 0x3d)),  // Burnt orange-red
+            foreground: CellRgb::Rgb(Rgb::new(0x1a, 0x12, 0x0f)),  // Dark background
         }
     }
 }
@@ -178,10 +178,11 @@ pub struct PrimaryColors {
 impl Default for PrimaryColors {
     fn default() -> Self {
         PrimaryColors {
-            background: Rgb::new(0x18, 0x18, 0x18),
-            foreground: Rgb::new(0xd8, 0xd8, 0xd8),
-            bright_foreground: Default::default(),
-            dim_foreground: Default::default(),
+            // Westerm signature: dark warm background with burnt orange foreground
+            background: Rgb::new(0x1a, 0x12, 0x0f),  // Deep dark brown-black
+            foreground: Rgb::new(0xff, 0xb3, 0x80),  // Warm peach-orange
+            bright_foreground: Some(Rgb::new(0xff, 0xd7, 0xb3)),  // Bright warm orange
+            dim_foreground: Some(Rgb::new(0xd9, 0x8a, 0x5a)),     // Dim burnt orange
         }
     }
 }
@@ -201,14 +202,15 @@ pub struct NormalColors {
 impl Default for NormalColors {
     fn default() -> Self {
         NormalColors {
-            black: Rgb::new(0x18, 0x18, 0x18),
-            red: Rgb::new(0xac, 0x42, 0x42),
-            green: Rgb::new(0x90, 0xa9, 0x59),
-            yellow: Rgb::new(0xf4, 0xbf, 0x75),
-            blue: Rgb::new(0x6a, 0x9f, 0xb5),
-            magenta: Rgb::new(0xaa, 0x75, 0x9f),
-            cyan: Rgb::new(0x75, 0xb5, 0xaa),
-            white: Rgb::new(0xd8, 0xd8, 0xd8),
+            // Westerm warm orange-toned palette
+            black: Rgb::new(0x2a, 0x1f, 0x1a),      // Warm dark brown
+            red: Rgb::new(0xe6, 0x5a, 0x3d),        // Bright burnt orange-red
+            green: Rgb::new(0xa8, 0xb5, 0x6a),      // Muted warm green
+            yellow: Rgb::new(0xff, 0xb3, 0x66),     // Golden orange
+            blue: Rgb::new(0x7d, 0x9f, 0xb5),       // Muted warm blue
+            magenta: Rgb::new(0xd9, 0x8a, 0x7d),    // Dusty rose-orange
+            cyan: Rgb::new(0x8f, 0xb5, 0xa8),       // Warm teal
+            white: Rgb::new(0xf2, 0xd5, 0xc4),      // Warm cream
         }
     }
 }
@@ -227,18 +229,16 @@ pub struct BrightColors {
 
 impl Default for BrightColors {
     fn default() -> Self {
-        // Generated with oklab by multiplying brightness by 1.12 and then adjusting numbers
-        // to make them look "nicer". Yellow color was generated the same way, however the first
-        // srgb representable color was picked.
+        // Westerm bright warm palette - enhanced brightness while maintaining orange tone
         BrightColors {
-            black: Rgb::new(0x6b, 0x6b, 0x6b),
-            red: Rgb::new(0xc5, 0x55, 0x55),
-            green: Rgb::new(0xaa, 0xc4, 0x74),
-            yellow: Rgb::new(0xfe, 0xca, 0x88),
-            blue: Rgb::new(0x82, 0xb8, 0xc8),
-            magenta: Rgb::new(0xc2, 0x8c, 0xb8),
-            cyan: Rgb::new(0x93, 0xd3, 0xc3),
-            white: Rgb::new(0xf8, 0xf8, 0xf8),
+            black: Rgb::new(0x6b, 0x5a, 0x52),      // Warm gray
+            red: Rgb::new(0xff, 0x7a, 0x5c),        // Vibrant coral-orange
+            green: Rgb::new(0xc4, 0xd4, 0x88),      // Bright warm green
+            yellow: Rgb::new(0xff, 0xd7, 0x99),     // Bright peachy gold
+            blue: Rgb::new(0x9f, 0xc4, 0xd9),       // Light warm blue
+            magenta: Rgb::new(0xff, 0xaa, 0x99),    // Bright salmon-pink
+            cyan: Rgb::new(0xad, 0xd4, 0xc4),       // Bright warm cyan
+            white: Rgb::new(0xff, 0xf5, 0xeb),      // Warm white (seashell)
         }
     }
 }
@@ -257,16 +257,16 @@ pub struct DimColors {
 
 impl Default for DimColors {
     fn default() -> Self {
-        // Generated with builtin westerm's color dimming function.
+        // Westerm dim warm palette - subdued orange tones
         DimColors {
-            black: Rgb::new(0x0f, 0x0f, 0x0f),
-            red: Rgb::new(0x71, 0x2b, 0x2b),
-            green: Rgb::new(0x5f, 0x6f, 0x3a),
-            yellow: Rgb::new(0xa1, 0x7e, 0x4d),
-            blue: Rgb::new(0x45, 0x68, 0x77),
-            magenta: Rgb::new(0x70, 0x4d, 0x68),
-            cyan: Rgb::new(0x4d, 0x77, 0x70),
-            white: Rgb::new(0x8e, 0x8e, 0x8e),
+            black: Rgb::new(0x1a, 0x12, 0x0f),      // Very dark warm brown
+            red: Rgb::new(0x99, 0x3d, 0x2a),        // Dim burnt orange-red
+            green: Rgb::new(0x6f, 0x77, 0x45),      // Dim olive
+            yellow: Rgb::new(0xa8, 0x77, 0x44),     // Dim amber
+            blue: Rgb::new(0x52, 0x68, 0x77),       // Dim steel blue
+            magenta: Rgb::new(0x8f, 0x5a, 0x52),    // Dim dusty rose
+            cyan: Rgb::new(0x5f, 0x77, 0x6f),       // Dim teal
+            white: Rgb::new(0xa8, 0x8f, 0x82),      // Dim warm beige
         }
     }
 }

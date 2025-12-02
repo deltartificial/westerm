@@ -71,18 +71,18 @@ impl Default for WindowConfig {
     fn default() -> Self {
         Self {
             dynamic_title: true,
-            blur: Default::default(),
+            blur: true,                                    // Westerm: Enable blur for transparency
             embed: Default::default(),
-            padding: Default::default(),
-            opacity: Default::default(),
+            padding: Delta { x: 10, y: 15 },              // Westerm: Extra top padding for macOS buttons
+            opacity: Percentage::new(0.85),                // Westerm: 85% opacity for more transparency
             position: Default::default(),
             identity: Default::default(),
             dimensions: Default::default(),
-            decorations: Default::default(),
+            decorations: Decorations::Full,                // Westerm: Full decorations with transparent title bar
             startup_mode: Default::default(),
             dynamic_padding: Default::default(),
             resize_increments: Default::default(),
-            decorations_theme_variant: Default::default(),
+            decorations_theme_variant: Some(Theme::Dark),  // Westerm: Dark theme for transparent titlebar
             option_as_alt: Default::default(),
             level: Default::default(),
         }
