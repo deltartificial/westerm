@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+TryExec=westerm
+Exec=westerm
+Icon=Westerm
+Terminal=false
+Categories=System;TerminalEmulator;
+
+Name=Westerm
+GenericName=Terminal
+Comment=A fast, cross-platform, OpenGL terminal emulator
+StartupNotify=true
+StartupWMClass=Westerm
+Actions=New;
+
+[Desktop Action New]
+Name=New Terminal
+Exec=westerm

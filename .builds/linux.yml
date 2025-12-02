@@ -1,0 +1,50 @@
+image: archlinux
+
+packages:
+  - pkg-config
+  - cmake
+  - make
+  - freetype2
+  - fontconfig
+  - libxcb
+  - libxkbcommon
+  - scdoc
+
+sources:
+  - https://github.com/westerm/westerm
+
+environment:
+  PATH: /home/build/.cargo/bin:/usr/bin/
+
+tasks:
+  - rustup: |
+      curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain stable --profile minimal
+  - rustfmt: |
+      cd westerm
+      rustup toolchain install nightly -c rustfmt
+      cargo +nightly fmt -- --check
+  - man-pages: |
+      cd westerm
+      cat extra/man/westerm.1.scd | scdoc > /dev/null
+      cat extra/man/westerm-msg.1.scd | scdoc > /dev/null
+      cat extra/man/westerm.5.scd | scdoc > /dev/null
+      cat extra/man/westerm-bindings.5.scd | scdoc > /dev/null
+  - test: |
+      cd westerm
+      cargo test
+  - oldstable: |
+      cd westerm
+      oldstable=$(cat Cargo.toml | grep "rust-version" | sed 's/.*"\(.*\)".*/\1/')
+      rustup toolchain install --profile minimal $oldstable
+      rustup default $oldstable
+      cargo test
+  - clippy: |
+      cd westerm
+      rustup component add clippy
+      cargo clippy --all-targets
+  - feature-wayland: |
+      cd westerm/westerm
+      RUSTFLAGS="-D warnings" cargo test --no-default-features --features=wayland
+  - feature-x11: |
+      cd westerm/westerm
+      RUSTFLAGS="-D warnings" cargo test --no-default-features --features=x11
