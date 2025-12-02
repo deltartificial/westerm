@@ -1,114 +1,176 @@
+<!-- LOGO -->
+<h1>
 <p align="center">
-    <img width="200" alt="Westerm Logo" src="https://raw.githubusercontent.com/westerm/westerm/master/extra/logo/compat/westerm-term%2Bscanlines.png">
-</p>
-
-<h1 align="center">Westerm - A fast, cross-platform, OpenGL terminal emulator</h1>
-
-<p align="center">
-  <img alt="Westerm - A fast, cross-platform, OpenGL terminal emulator"
-       src="https://raw.githubusercontent.com/westerm/westerm/master/extra/promo/westerm-readme.png">
+  <img src="extra/logo/westerm-logo.png" alt="Logo" width="128">
+  <br>Westerm
+</h1>
+  <p align="center">
+    Fast, cross-platform, GPU-accelerated terminal emulator.
+    <br />
+    <a href="#about">About</a>
+    ·
+    <a href="https://github.com/deltartificial/westerm/releases">Download</a>
+    ·
+    <a href="#installation">Installation</a>
+    ·
+    <a href="#features">Features</a>
+    ·
+    <a href="#configuration">Configuration</a>
+  </p>
 </p>
 
 ## About
 
-Westerm is a modern terminal emulator that comes with sensible defaults, but
-allows for extensive [configuration](#configuration). By integrating with other
-applications, rather than reimplementing their functionality, it manages to
-provide a flexible set of [features](./docs/features.md) with high performance.
-The supported platforms currently consist of BSD, Linux, macOS and Windows.
+Westerm is a modern terminal emulator that differentiates itself by being
+fast, cross-platform, and GPU-accelerated. Built on top of OpenGL, Westerm
+provides exceptional performance while maintaining compatibility with all
+existing shells and terminal software.
+
+Westerm is a fork of Alacritty, focusing on delivering a seamless terminal
+experience across macOS, Linux, Windows, and BSD systems. It comes with
+sensible defaults but allows for extensive configuration to match your
+workflow.
+
+While aiming for this ambitious goal, Westerm strives to be one of the best
+fully standards-compliant terminal emulators, remaining compatible with all
+existing shells and software while supporting all of the latest terminal
+innovations in the ecosystem. You can use Westerm as a drop-in replacement
+for your existing terminal emulator.
+
+**Key Features:**
+- **GPU Acceleration**: Leverages OpenGL for smooth, efficient rendering
+- **Cross-Platform**: Native support for macOS, Linux, Windows, and BSD
+- **Highly Configurable**: Extensive configuration options via TOML
+- **Standards Compliant**: Full VT100/ANSI terminal emulation
+- **Lightweight**: Minimal dependencies and resource usage
+- **Modern**: Support for modern terminal features and protocols
 
 The software is considered to be at a **beta** level of readiness; there are
 a few missing features and bugs to be fixed, but it is already used by many as
 a daily driver.
 
-Precompiled binaries are available from the [GitHub releases page](https://github.com/westerm/westerm/releases).
+## Installation
 
-Join [`#westerm`] on libera.chat if you have questions or looking for a quick help.
+### macOS
 
-[`#westerm`]: https://web.libera.chat/gamja/?channels=#westerm
+Download the latest `.app` from the [GitHub releases page](https://github.com/deltartificial/westerm/releases),
+or build from source:
+
+```bash
+# Clone the repository
+git clone https://github.com/deltartificial/westerm.git
+cd westerm
+
+# Build and install
+make app
+cp -r target/release/osx/Westerm.app /Applications/
+```
+
+### Linux
+
+```bash
+# Clone the repository
+git clone https://github.com/deltartificial/westerm.git
+cd westerm
+
+# Build with cargo
+cargo build --release
+
+# Install (optional)
+sudo cp target/release/westerm /usr/local/bin/
+```
+
+For detailed installation instructions for all platforms, see [INSTALL.md](INSTALL.md).
 
 ## Features
 
-You can find an overview over the features available in Westerm [here](./docs/features.md).
+Westerm provides a rich set of features while maintaining high performance:
 
-## Further information
+- **GPU Rendering**: Hardware-accelerated text rendering using OpenGL
+- **True Color Support**: 24-bit color support
+- **Vi Mode**: Built-in vi-mode for keyboard-based text selection
+- **Search**: Regex-based search with highlighting
+- **Hints**: URL and path detection with keyboard hints
+- **Mouse Support**: Click to select, middle-click to paste
+- **Scrollback**: Configurable scrollback buffer
+- **Multiple Windows**: Native multi-window support
+- **Tabs**: Native tab support on macOS
+- **Ligatures**: Font ligature support
+- **Unicode**: Full Unicode support including emoji
+- **Hyperlinks**: OSC 8 hyperlink support
+- **Sixel Graphics**: Experimental sixel graphics support
 
-- [Announcing Westerm, a GPU-Accelerated Terminal Emulator](https://jwilm.io/blog/announcing-westerm/) January 6, 2017
-- [A talk about Westerm at the Rust Meetup January 2017](https://www.youtube.com/watch?v=qHOdYO3WUTk) January 19, 2017
-- [Westerm Lands Scrollback, Publishes Benchmarks](https://jwilm.io/blog/westerm-lands-scrollback/) September 17, 2018
-
-## Installation
-
-Westerm can be installed by using various package managers on Linux, BSD,
-macOS and Windows.
-
-Prebuilt binaries for macOS and Windows can also be downloaded from the
-[GitHub releases page](https://github.com/westerm/westerm/releases).
-
-For everyone else, the detailed instructions to install Westerm can be found
-[here](INSTALL.md).
-
-### Requirements
-
-- At least OpenGL ES 2.0
-- [Windows] ConPTY support (Windows 10 version 1809 or higher)
+For a complete overview of features, see [docs/features.md](./docs/features.md).
 
 ## Configuration
 
-You can find the documentation for Westerm's configuration in `man 5
-westerm`, or by looking at [the website] if you do not have the manpages
-installed.
+Westerm is configured through a TOML configuration file. The configuration file
+location depends on your platform:
 
-[the website]: https://westerm.org/config-westerm.html
+- **macOS**: `~/.config/westerm/westerm.toml`
+- **Linux**: `~/.config/westerm/westerm.toml`
+- **Windows**: `%APPDATA%\westerm\westerm.toml`
 
-Westerm doesn't create the config file for you, but it looks for one in the
-following locations:
+Example configuration:
 
-1. `$XDG_CONFIG_HOME/westerm/westerm.toml`
-2. `$XDG_CONFIG_HOME/westerm.toml`
-3. `$HOME/.config/westerm/westerm.toml`
-4. `$HOME/.westerm.toml`
-5. `/etc/westerm/westerm.toml`
+```toml
+[window]
+opacity = 0.95
+padding.x = 10
+padding.y = 10
 
-On Windows, the config file will be looked for in:
+[font]
+size = 14.0
+normal.family = "JetBrains Mono"
 
-* `%APPDATA%\westerm\westerm.toml`
+[colors.primary]
+background = "#1e1e2e"
+foreground = "#cdd6f4"
+
+[cursor]
+style = "Beam"
+```
+
+For complete configuration documentation, see the [configuration guide](https://github.com/alacritty/alacritty/blob/master/extra/man/alacritty.5.scd).
+
+## Building from Source
+
+### Prerequisites
+
+- **Rust**: Latest stable version (install via [rustup](https://rustup.rs/))
+- **CMake**: Required for some dependencies
+- **Python 3**: Required for some build scripts
+
+### Build
+
+```bash
+# Clone the repository
+git clone https://github.com/deltartificial/westerm.git
+cd westerm
+
+# Build in release mode
+cargo build --release
+
+# The binary will be at target/release/westerm
+```
 
 ## Contributing
 
-A guideline about contributing to Westerm can be found in the
-[`CONTRIBUTING.md`](CONTRIBUTING.md) file.
-
-## FAQ
-
-**_Is it really the fastest terminal emulator?_**
-
-Benchmarking terminal emulators is complicated. Westerm uses
-[vtebench](https://github.com/westerm/vtebench) to quantify terminal emulator
-throughput and manages to consistently score better than the competition using
-it. If you have found an example where this is not the case, please report a
-bug.
-
-Other aspects like latency or framerate and frame consistency are more difficult
-to quantify. Some terminal emulators also intentionally slow down to save
-resources, which might be preferred by some users.
-
-If you have doubts about Westerm's performance or usability, the best way to
-quantify terminal emulators is always to test them with **your** specific
-usecases.
-
-**_Why isn't feature X implemented?_**
-
-Westerm has many great features, but not every feature from every other
-terminal. This could be for a number of reasons, but sometimes it's just not a
-good fit for Westerm. This means you won't find things like tabs or splits
-(which are best left to a window manager or [terminal multiplexer][tmux]) nor
-niceties like a GUI config editor.
-
-[tmux]: https://github.com/tmux/tmux
+Contributions are welcome! Please feel free to submit pull requests or open
+issues for bugs and feature requests.
 
 ## License
 
-Westerm is released under the [Apache License, Version 2.0].
+Westerm is released under the [Apache License, Version 2.0](LICENSE-APACHE).
 
-[Apache License, Version 2.0]: https://github.com/westerm/westerm/blob/master/LICENSE-APACHE
+## Credits
+
+Westerm is a fork of [Alacritty](https://github.com/alacritty/alacritty),
+originally created by Joe Wilm and maintained by Christian Duerr.
+
+Special thanks to all the contributors of the Alacritty project whose
+work made Westerm possible.
+
+---
+
+<p align="center">Made with ❤️ by the Westerm community</p>
